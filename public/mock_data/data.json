@@ -1,26 +1,58 @@
 [
     {
-        "name": "kafka1",
-        "broker": "1111111111",
-        "isInput": true,
-        "isOutput": true
-    },
-    {
-        "name": "kafka2",
-        "broker": "222222222",
+        "name": "source_kafka",
+        "broker": "172.10.12.22:9092,172.10.12.23:9092,172.10.12.24:9092,172.10.12.25:9092,172.10.12.26:9092",
+        "topic": "test1",
+        "group": "test_yrw",
+        "partition": "60",
+        "replicas": "2",
+        "split": ",",
+        "fields": "host:string,https:string,method:string,request_body:string,uri:string,response_body:string",
         "isInput": false,
-        "isOutput": false
+        "isOutput": true,
+        "isDouOutput": false,
+        "isDouInput": false
     },
     {
-        "name": "kafka3",
-        "broker": "33333333",
+        "name": "filter_1",
+        "rule": "host,uri,request_body,response_body",
+        "numPartition": 60,
         "isInput": true,
-        "isOutput": false
+        "isOutput": true,
+        "isDouOutput": false,
+        "isDouInput": false
     },
     {
-        "name": "kafka4",
-        "broker": "44444444",
+        "name": "filter_2",
+        "rule": "host,uri,request_body,response_body",
+        "numPartition": 60,
         "isInput": false,
-        "isOutput": true
+        "isOutput": false,
+        "isDouOutput": true,
+        "isDouInput": true
+    },
+    {
+        "name": "elasticSearch_1",
+        "nodes": "172.10.12.22,172.10.12.23,172.10.12.24,172.10.12.25,172.10.12.26",
+        "port": "9200",
+        "index": "test_2018XX",
+        "numShards": "3",
+        "numReplicas": "1",
+        "isInput": true,
+        "isOutput": false,
+        "isDouOutput": false,
+        "isDouInput": false
+    },
+    {
+        "name": "elasticSearch_2",
+        "nodes": "172.10.12.22,172.10.12.23,172.10.12.24,172.10.12.25,172.10.12.26",
+        "port": "9200",
+        "index": "test2_2018XX",
+        "numShards": "3",
+        "numReplicas": "1",
+        "isInput": false,
+        "isOutput": false,
+        "isDouOutput": false,
+        "isDouInput": true
     }
 ]

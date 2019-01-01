@@ -12,13 +12,13 @@ class App extends Component {
         this.state = {
             current: 'home'
         }
-    }
+    };
 
     handleClick = (e) => {
         this.setState({
             current: e.key,
         });
-    }
+    };
 
 
     render() {
@@ -30,7 +30,7 @@ class App extends Component {
                     mode="horizontal"
                 >
                     <Menu.Item key="home"><Link to="/">首页</Link></Menu.Item>
-                    <Menu.Item key="editor"><Link to="/editor">编辑页</Link></Menu.Item>
+                    <Menu.Item key="editor"><Link to="/editor">流程制作</Link></Menu.Item>
                 </Menu>
                 <Switch>
                     <Route path="/" exact component={Home} />
