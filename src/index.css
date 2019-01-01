@@ -17,3 +17,15 @@ body {
 .app {
     height: 100%;
 }
+
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.app-body {
+    height: 100%;
+    padding-top: 46px;
+}

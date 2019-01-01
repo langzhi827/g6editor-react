@@ -24,18 +24,22 @@ class App extends Component {
     render() {
         return <Router>
             <div className="app">
-                <Menu
-                    onClick={this.handleClick}
-                    selectedKeys={[this.state.current]}
-                    mode="horizontal"
-                >
-                    <Menu.Item key="home"><Link to="/">首页</Link></Menu.Item>
-                    <Menu.Item key="editor"><Link to="/editor">编辑页</Link></Menu.Item>
-                </Menu>
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/editor" component={Editor} />
-                </Switch>
+                <div className="app-header">
+                    <Menu
+                        onClick={this.handleClick}
+                        selectedKeys={[this.state.current]}
+                        mode="horizontal"
+                    >
+                        <Menu.Item key="home"><Link to="/">首页</Link></Menu.Item>
+                        <Menu.Item key="editor"><Link to="/editor">编辑页</Link></Menu.Item>
+                    </Menu>
+                </div>
+                <div className="app-body">
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/editor" component={Editor} />
+                    </Switch>
+                </div>
             </div>
         </Router>;
     }

@@ -16,6 +16,10 @@ class Page extends Component {
       },
     });
 
+    page.on('afteritemselected', ev => {
+
+    });
+
     editor.add(page);
   }
 
