@@ -1,0 +1,26 @@
+[
+    {
+        "name": "kafka1",
+        "broker": "1111111111",
+        "isInput": true,
+        "isOutput": true
+    },
+    {
+        "name": "kafka2",
+        "broker": "222222222",
+        "isInput": false,
+        "isOutput": false
+    },
+    {
+        "name": "kafka3",
+        "broker": "33333333",
+        "isInput": true,
+        "isOutput": false
+    },
+    {
+        "name": "kafka4",
+        "broker": "44444444",
+        "isInput": false,
+        "isOutput": true
+    }
+]

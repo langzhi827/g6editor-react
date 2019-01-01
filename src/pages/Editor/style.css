@@ -1,0 +1,134 @@
+.editor {
+    position: relative;
+    height: 100%;
+    padding: 42px 200px 0 200px;
+}
+
+.toolbar {
+    padding: 8px 0px;
+    width: 100%;
+    border: 1px solid #E9E9E9;
+    height: 42px;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.toolbar *::before {
+    font-size: 16px !important;
+}
+
+.toolbar .disable {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.toolbar .icon-select.disable {
+    background: #EEEEEE;
+}
+
+.toolbar .separator {
+    margin: 4px;
+    border-left: 1px solid #E9E9E9;
+}
+
+.toolbar .command {
+    width: 27px;
+    height: 27px;
+    margin: 0px 6px;
+    border-radius: 2px;
+    padding-left: 4px;
+    display: inline-block;
+    border: 1px solid rgba(2, 2, 2, 0);
+}
+
+.toolbar .command:nth-of-type(1) {
+    margin-left: 24px;
+}
+
+.toolbar .command:hover {
+    cursor: pointer;
+    border: 1px solid #E9E9E9;
+}
+
+.toolbar .disable:hover {
+    cursor: default;
+    border: 1px solid rgba(2, 2, 2, 0);
+}
+
+.itempannel {
+    position: absolute;
+    left: 0px;
+    top: 42px;
+    bottom: 0;
+    z-index: 2;
+    background: #F7F9FB;
+    width: 200px;
+    padding-top: 8px;
+    border-right: 1px solid #E6E9ED;
+}
+
+.itempannel ul {
+    padding: 0px;
+    padding-left: 16px;
+}
+
+.itempannel li {
+    color: rgba(0, 0, 0, 0.65);
+    border-radius: 4px;
+    width: 160px;
+    height: 28px;
+    line-height: 26px;
+    padding-left: 8px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    list-style-type: none;
+}
+
+.itempannel .pannel-type-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    background: url(https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg)
+}
+
+.itempannel li:hover {
+    background: white;
+    border: 1px solid #CED4D9;
+    cursor: move;
+}
+
+.minimap {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 0;
+    width: 200px;
+    height: 120px;
+    border: 1px solid #EEEEEE;
+}
+
+.page {
+    height: 100%;
+}
+
+.btn {
+    border: none;
+    background: transparent;
+    border: 1px solid #bbb;
+    padding: 4px 10px;
+    border-radius: 2px;
+    outline: none;
+}
+
+.json-box {
+    position: absolute;
+    top: 42px;
+    right: 0;
+    bottom: 120px;
+    z-index: 2;
+    width: 200px;
+    border: 1px solid #EEEEEE;
+    overflow: auto;
+}
