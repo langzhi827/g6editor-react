@@ -94,8 +94,7 @@ class Editor extends Component {
         this.state = {
             data: [],
             dataMap: {},
-            relation: {nodes: []},
-            nodeInfo: {}
+            relation: {nodes: []}
         };
     }
 
@@ -168,29 +167,27 @@ class Editor extends Component {
                 relation: relation
             })
         });
-        page.on('afteritemselected', ev => {
+       /* page.on('afteritemselected', ev => {
             let shape = ev.item.model.shape;
             this.setState({
                 nodeInfo: this.state.dataMap[shape]
             });
             //  console.log(this.state.dataMap[shape]);
-        });
+        });*/
     }
 
     render() {
-        const {data, relation, dataMap,nodeInfo} = this.state;
+        const {data, relation, dataMap} = this.state;
         relation.nodes.forEach(r => {
             r.original = dataMap[r.shape];
         });
-
         return (
             <div className="editor">
                 <Toolbar editor={this.editor} relation={relation} dataMap={dataMap}/>
                 <ItemPannel editor={this.editor} data={data}/>
                 <Minimap editor={this.editor}/>
-                <Page editor={this.editor}/>
+                <Page editor={this.editor} dataMap={dataMap}/>
                 <div className="json-box">{JSON.stringify(relation, null, 2)}</div>
-                <div className="node-box">{JSON.stringify(nodeInfo, null, 2)}</div>
             </div>
         );
     }

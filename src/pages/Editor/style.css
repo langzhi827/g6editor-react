@@ -112,20 +112,9 @@
 .page {
     height: 100%;
 }
-
-.node-box {
-    position: absolute;
-    z-index: 2;
-    right: 0;
-    top: 42px;
-    width: 250px;
-    height: 300px;
-    border: 1px solid #EEEEEE;
-}
-
 .json-box {
     position: absolute;
-    top: 342px;
+    top: 42px;
     right: 0;
     bottom: 120px;
     z-index: 2;
