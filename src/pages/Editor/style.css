@@ -104,7 +104,7 @@
     z-index: 2;
     right: 0;
     bottom: 0;
-    width: 200px;
+    width: 250px;
     height: 120px;
     border: 1px solid #EEEEEE;
 }
@@ -113,22 +113,23 @@
     height: 100%;
 }
 
-.btn {
-    border: none;
-    background: transparent;
-    border: 1px solid #bbb;
-    padding: 4px 10px;
-    border-radius: 2px;
-    outline: none;
+.node-box {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    top: 42px;
+    width: 250px;
+    height: 300px;
+    border: 1px solid #EEEEEE;
 }
 
 .json-box {
     position: absolute;
-    top: 42px;
+    top: 342px;
     right: 0;
     bottom: 120px;
     z-index: 2;
-    width: 200px;
+    width: 250px;
     border: 1px solid #EEEEEE;
     overflow: auto;
 }
