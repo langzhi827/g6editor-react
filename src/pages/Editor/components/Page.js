@@ -19,14 +19,13 @@ class Page extends Component {
     const page = new G6Editor.Flow({
       graph: {
         container: this.element.current
-      },
+      }
     });
 
     page.on('afteritemselected', ev => {
       let shape = ev.item.model.shape;
       const { dataMap } = this.props;
       const data = dataMap[shape] || {};
-
       this.setState({
         visible: true,
         data: Object.keys(data).map(key => {
@@ -45,13 +44,12 @@ class Page extends Component {
       visible: false,
     });
   };
-
+  //保存数据
   handleSubmit = (e) => {
     e.preventDefault();
 
     this.props.form.validateFields((err, values) => {
       let data = {};
-
       let i = 0;
       while (values['name-' + i] !== undefined) {
         if (values['name-' + i] !== '') {
@@ -59,12 +57,13 @@ class Page extends Component {
         }
         i++;
       }
-
-      console.log(data);
-
+      //将表单传回Index页面
+      this.props.callBack(data);
+      this.onClose();
+     // console.log(data);
     });
-  }
-
+  };
+  //添加属性
   add = () => {
     this.setState(preState => {
       preState.data.push({
@@ -73,22 +72,28 @@ class Page extends Component {
       });
       return preState
     })
-  }
-
+  };
+  //删除属性
   delete = (i) => {
     this.setState(preState => {
       preState.data.splice(i, 1);
       return preState;
     })
-  }
+  };
 
   render() {
+    //获取节点出事数据
     let { data } = this.state;
+    //获取form表单
     const { getFieldDecorator } = this.props.form;
 
     return (
+        //嵌套类
       <React.Fragment>
         <div className="page" ref={this.element}></div>
+        {
+          //抽屉
+        }
         <Drawer
           title="详情"
           closable={false}
@@ -97,11 +102,15 @@ class Page extends Component {
           onClose={this.onClose}
           visible={this.state.visible}
         >
+          {
+            //Form表单
+          }
           <Form
             className="ant-advanced-search-form"
             onSubmit={this.handleSubmit}
           >
             {
+              //循环展示属性
               data.map((dt, i) => {
                 return <Row gutter={24} key={i} style={{ display: dt.name === 'id' ? 'none' : 'block' }}>
                   <Col span={10}>

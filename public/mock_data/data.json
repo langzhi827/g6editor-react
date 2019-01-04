@@ -6,53 +6,39 @@
         "group": "test_yrw",
         "partition": "60",
         "replicas": "2",
+        "type": "input",
         "split": ",",
-        "fields": "host:string,https:string,method:string,request_body:string,uri:string,response_body:string",
-        "isInput": false,
-        "isOutput": true,
-        "isDouOutput": false,
-        "isDouInput": false
+        "fields": "host:string,https:string,method:string,request_body:string,uri:string,response_body:string"
+
     },
     {
         "name": "filter_1",
         "rule": "host,uri,request_body,response_body",
-        "numPartition": 60,
-        "isInput": true,
-        "isOutput": true,
-        "isDouOutput": false,
-        "isDouInput": false
+        "type": "transform",
+        "numPartition": 60
     },
     {
         "name": "filter_2",
         "rule": "host,uri,request_body,response_body",
-        "numPartition": 60,
-        "isInput": false,
-        "isOutput": false,
-        "isDouOutput": true,
-        "isDouInput": true
+        "type": "transform",
+        "numPartition": 60
     },
     {
         "name": "elasticSearch_1",
         "nodes": "172.10.12.22,172.10.12.23,172.10.12.24,172.10.12.25,172.10.12.26",
         "port": "9200",
         "index": "test_2018XX",
+        "type": "output",
         "numShards": "3",
-        "numReplicas": "1",
-        "isInput": true,
-        "isOutput": false,
-        "isDouOutput": false,
-        "isDouInput": false
+        "numReplicas": "1"
     },
     {
         "name": "elasticSearch_2",
         "nodes": "172.10.12.22,172.10.12.23,172.10.12.24,172.10.12.25,172.10.12.26",
         "port": "9200",
+        "type": "output",
         "index": "test2_2018XX",
         "numShards": "3",
-        "numReplicas": "1",
-        "isInput": false,
-        "isOutput": false,
-        "isDouOutput": false,
-        "isDouInput": true
+        "numReplicas": "1"
     }
 ]

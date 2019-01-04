@@ -90,7 +90,6 @@ class Editor extends Component {
     constructor(props) {
         super(props);
         this.editor = new G6Editor();
-
         this.state = {
             data: [],
             dataMap: {},
@@ -107,44 +106,61 @@ class Editor extends Component {
             // 设置锚点
             anchor: []
         };
-
-        if (dt.isInput) {
+        if(dt.type!=="input"){
             obj.anchor.push([0.5, 0, {
                 type: 'input'
             }]);
         }
-        if (dt.isOutput) {
+        if(dt.type!=="output"){
             obj.anchor.push([0.5, 1, {
                 type: 'output'
             }]);
         }
-        if (dt.isDouInput) {
-            obj.anchor.push([0.33, 0, {
-                type: 'input'
-            }]);
-            obj.anchor.push([0.66, 0, {
-                type: 'input'
-            }]);
-        }
-        if (dt.isDouOutput) {
-            obj.anchor.push([0.33, 1, {
-                type: 'output'
-            }]);
-            obj.anchor.push([0.66, 1, {
-                type: 'output'
-            }]);
-        }
+        /*
+                if (dt.isInput) {
+                    obj.anchor.push([0.5, 0, {
+                        type: 'input'
+                    }]);
+                }
+                if (dt.isOutput) {
+                    obj.anchor.push([0.5, 1, {
+                        type: 'output'
+                    }]);
+                }
+               if (dt.isDouInput) {
+                    obj.anchor.push([0.33, 0, {
+                        type: 'input'
+                    }]);
+                    obj.anchor.push([0.66, 0, {
+                        type: 'input'
+                    }]);
+                }
+                if (dt.isDouOutput) {
+                    obj.anchor.push([0.33, 1, {
+                        type: 'output'
+                    }]);
+                    obj.anchor.push([0.66, 1, {
+                        type: 'output'
+                    }]);
+                }*/
 
         Flow.registerNode(dt.id, obj, 'model-card');
     };
-
+    callBack= (e)=>{
+        //console.info(this.state.dataMap[e.id]);
+        //console.info(e);
+        //重新赋值
+        let {dataMap} = this.state;
+        dataMap[e.id]=e;
+        //console.info(this.state.dataMap[e.id]);
+    };
     componentDidMount() {
         fetch('./mock_data/data.json')
             .then(function (response) {
                 return response.json();
             })
             .then((data) => {
-
+                //初始化
                 let dataMap = {};
                 data.forEach(dt => {
                     dt.id = Math.random() * 10e16 + '';
@@ -167,26 +183,18 @@ class Editor extends Component {
                 relation: relation
             })
         });
-       /* page.on('afteritemselected', ev => {
-            let shape = ev.item.model.shape;
-            this.setState({
-                nodeInfo: this.state.dataMap[shape]
-            });
-            //  console.log(this.state.dataMap[shape]);
-        });*/
+
     }
 
     render() {
         const {data, relation, dataMap} = this.state;
-        relation.nodes.forEach(r => {
-            r.original = dataMap[r.shape];
-        });
+
         return (
             <div className="editor">
                 <Toolbar editor={this.editor} relation={relation} dataMap={dataMap}/>
                 <ItemPannel editor={this.editor} data={data}/>
                 <Minimap editor={this.editor}/>
-                <Page editor={this.editor} dataMap={dataMap}/>
+                <Page editor={this.editor} dataMap={dataMap} callBack={this.callBack}/>
                 <div className="json-box">{JSON.stringify(relation, null, 2)}</div>
             </div>
         );
