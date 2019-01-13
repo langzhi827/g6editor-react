@@ -68,7 +68,7 @@
     border-right: 1px solid #E6E9ED;
 }
 
-.itempannel ul {
+/* .itempannel ul {
     padding: 0px;
     padding-left: 16px;
 }
@@ -97,7 +97,7 @@
     background: white;
     border: 1px solid #CED4D9;
     cursor: move;
-}
+} */
 
 .minimap {
     position: absolute;

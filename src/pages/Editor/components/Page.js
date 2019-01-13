@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import G6Editor from "@antv/g6-editor"
-import { Drawer, Input, Button, Form, Row, Col, Icon } from 'antd';
+import { Drawer, Input, Button, Form, Row, Col, Icon, Select } from 'antd';
+
+const Option = Select.Option;
+const { TextArea } = Input;
 
 class Page extends Component {
   constructor(props) {
@@ -60,7 +63,7 @@ class Page extends Component {
       //将表单传回Index页面
       this.props.callBack(data);
       this.onClose();
-     // console.log(data);
+      // console.log(data);
     });
   };
   //添加属性
@@ -87,8 +90,26 @@ class Page extends Component {
     //获取form表单
     const { getFieldDecorator } = this.props.form;
 
+    const hideFileds = ['id', 'type'];
+    const areaFileds = ['fields', 'rule'];
+
+    const getItem = (dt) => {
+      if (areaFileds.indexOf(dt.name) > -1) {
+        return <TextArea rows={4} />;
+      } else if (Array.isArray(dt.value)) {
+        return <Select
+          mode="multiple"
+          style={{ width: '100%' }}
+        >
+          {dt.value.map(item => <Option key={item}>{item}</Option>)}
+        </Select>;
+      } else {
+        return <Input />;
+      }
+    }
+
     return (
-        //嵌套类
+      //嵌套类
       <React.Fragment>
         <div className="page" ref={this.element}></div>
         {
@@ -112,7 +133,7 @@ class Page extends Component {
             {
               //循环展示属性
               data.map((dt, i) => {
-                return <Row gutter={24} key={i} style={{ display: dt.name === 'id' ? 'none' : 'block' }}>
+                return <Row gutter={24} key={i} style={{ display: hideFileds.indexOf(dt.name) > -1 ? 'none' : 'block' }}>
                   <Col span={10}>
                     <Form.Item>
                       {getFieldDecorator(`name-${i}`, {
@@ -126,9 +147,7 @@ class Page extends Component {
                     <Form.Item>
                       {getFieldDecorator(`value-${i}`, {
                         initialValue: dt.value
-                      })(
-                        <Input />
-                      )}
+                      })(getItem(dt))}
                     </Form.Item>
                   </Col>
                   <Col span={4}>
