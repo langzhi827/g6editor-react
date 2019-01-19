@@ -1,3 +1,34 @@
+.contextmenu{
+    margin: 0px;
+    width: 200px;
+    background: white;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
+    color: #000;
+    font-size: 12px;
+    display: none;
+}
+.contextmenu .disable{
+    color: rgba(0,0,0,0.25);
+}
+.contextmenu .command{
+    height: 12px;
+    padding: 8px;
+    box-sizing: content-box;
+}
+.contextmenu .command:hover{
+    cursor: pointer;
+    background: #E6F7FF;
+}
+.contextmenu .command.disable:hover{
+    cursor: default;
+    background: none;
+}
+.contextmenu span:nth-of-type(1){
+    float: left;
+}
+.contextmenu span:nth-of-type(2){
+    float: right;
+}
 .editor {
     position: relative;
     height: 100%;
@@ -97,7 +128,7 @@
     background: white;
     border: 1px solid #CED4D9;
     cursor: move;
-} */
+}
 
 .minimap {
     position: absolute;
@@ -108,17 +139,17 @@
     height: 120px;
     border: 1px solid #EEEEEE;
 }
-
+*/
 .page {
-    height: 100%;
+    height:100%;
 }
 .json-box {
     position: absolute;
     top: 42px;
     right: 0;
-    bottom: 120px;
+    bottom: 0px;
     z-index: 2;
-    width: 250px;
+    width: 300px;
     border: 1px solid #EEEEEE;
     overflow: auto;
 }

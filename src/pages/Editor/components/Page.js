@@ -25,7 +25,7 @@ class Page extends Component {
       }
     });
 
-    page.on('afteritemselected', ev => {
+    page.on('node:click', ev => {
       let shape = ev.item.model.shape;
       const { dataMap } = this.props;
       const data = dataMap[shape] || {};
@@ -106,7 +106,7 @@ class Page extends Component {
       } else {
         return <Input />;
       }
-    }
+    };
 
     return (
       //嵌套类
@@ -134,7 +134,7 @@ class Page extends Component {
               //循环展示属性
               data.map((dt, i) => {
                 return <Row gutter={24} key={i} style={{ display: hideFileds.indexOf(dt.name) > -1 ? 'none' : 'block' }}>
-                  <Col span={10}>
+                  <Col span={7}>
                     <Form.Item>
                       {getFieldDecorator(`name-${i}`, {
                         initialValue: dt.name
@@ -143,7 +143,7 @@ class Page extends Component {
                       )}
                     </Form.Item>
                   </Col>
-                  <Col span={10} key={i}>
+                  <Col span={13} key={i}>
                     <Form.Item>
                       {getFieldDecorator(`value-${i}`, {
                         initialValue: dt.value

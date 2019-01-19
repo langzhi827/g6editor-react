@@ -12,7 +12,7 @@
         "group": "test_yrw",
         "partition": "60",
         "replicas": "2",
-        "type": "input",
+        "type": "输入源",
         "split": ",",
         "fields": "host:string,https:string,method:string,request_body:string,uri:string,response_body:string"
     },
@@ -39,7 +39,7 @@
         ],
         "port": "9200",
         "index": "test_2018XX",
-        "type": "output",
+        "type": "输出源",
         "numShards": "3",
         "numReplicas": "1"
     },
@@ -53,7 +53,7 @@
             "172.10.12.26"
         ],
         "port": "9200",
-        "type": "output",
+        "type": "输出源",
         "index": "test2_2018XX",
         "numShards": "3",
         "numReplicas": "1"

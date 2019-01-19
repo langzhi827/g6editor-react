@@ -7,7 +7,7 @@ import Page from './components/Page';
 import ItemPannel from './components/ItemPannel';
 import Toolbar from './components/Toolbar';
 import Minimap from './components/Minimap';
-
+import Contextmenu from "./components/Contextmenu"
 import mark1 from './images/mark.svg';
 import mark2 from './images/mark2.svg';
 
@@ -106,43 +106,16 @@ class Editor extends Component {
             // 设置锚点
             anchor: []
         };
-        if(dt.type!=="input"){
+        if(dt.type!=="输入源"){
             obj.anchor.push([0.5, 0, {
                 type: 'input'
             }]);
         }
-        if(dt.type!=="output"){
+        if(dt.type!=="输出源"){
             obj.anchor.push([0.5, 1, {
                 type: 'output'
             }]);
         }
-        /*
-                if (dt.isInput) {
-                    obj.anchor.push([0.5, 0, {
-                        type: 'input'
-                    }]);
-                }
-                if (dt.isOutput) {
-                    obj.anchor.push([0.5, 1, {
-                        type: 'output'
-                    }]);
-                }
-               if (dt.isDouInput) {
-                    obj.anchor.push([0.33, 0, {
-                        type: 'input'
-                    }]);
-                    obj.anchor.push([0.66, 0, {
-                        type: 'input'
-                    }]);
-                }
-                if (dt.isDouOutput) {
-                    obj.anchor.push([0.33, 1, {
-                        type: 'output'
-                    }]);
-                    obj.anchor.push([0.66, 1, {
-                        type: 'output'
-                    }]);
-                }*/
 
         Flow.registerNode(dt.id, obj, 'model-card');
     };
@@ -192,8 +165,9 @@ class Editor extends Component {
         return (
             <div className="editor">
                 <Toolbar editor={this.editor} relation={relation} dataMap={dataMap}/>
+                <Contextmenu editor={this.editor}/>
                 <ItemPannel editor={this.editor} data={data}/>
-                <Minimap editor={this.editor}/>
+               {/* <Minimap editor={this.editor}/>*/}
                 <Page editor={this.editor} dataMap={dataMap} callBack={this.callBack}/>
                 <div className="json-box">{JSON.stringify(relation, null, 2)}</div>
             </div>
