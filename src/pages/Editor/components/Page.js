@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import G6Editor from "@antv/g6-editor"
 import { Drawer, Input, Button, Form, Row, Col, Icon, Select } from 'antd';
-
-const Option = Select.Option;
-const { TextArea } = Input;
+import ItemEditor from './ItemEditor';
 
 class Page extends Component {
   constructor(props) {
@@ -29,8 +27,10 @@ class Page extends Component {
       let shape = ev.item.model.shape;
       const { dataMap } = this.props;
       const data = dataMap[shape] || {};
+
       this.setState({
         visible: true,
+        type: data.type,
         data: Object.keys(data).map(key => {
           return {
             name: key,
@@ -86,27 +86,9 @@ class Page extends Component {
 
   render() {
     //获取节点出事数据
-    let { data } = this.state;
+    let { data, type } = this.state;
     //获取form表单
     const { getFieldDecorator } = this.props.form;
-
-    const hideFileds = ['id', 'type'];
-    const areaFileds = ['fields', 'rule'];
-
-    const getItem = (dt) => {
-      if (areaFileds.indexOf(dt.name) > -1) {
-        return <TextArea rows={4} />;
-      } else if (Array.isArray(dt.value)) {
-        return <Select
-          mode="multiple"
-          style={{ width: '100%' }}
-        >
-          {dt.value.map(item => <Option key={item}>{item}</Option>)}
-        </Select>;
-      } else {
-        return <Input />;
-      }
-    };
 
     return (
       //嵌套类
@@ -130,34 +112,7 @@ class Page extends Component {
             className="ant-advanced-search-form"
             onSubmit={this.handleSubmit}
           >
-            {
-              //循环展示属性
-              data.map((dt, i) => {
-                return <Row gutter={24} key={i} style={{ display: hideFileds.indexOf(dt.name) > -1 ? 'none' : 'block' }}>
-                  <Col span={7}>
-                    <Form.Item>
-                      {getFieldDecorator(`name-${i}`, {
-                        initialValue: dt.name
-                      })(
-                        <Input />
-                      )}
-                    </Form.Item>
-                  </Col>
-                  <Col span={13} key={i}>
-                    <Form.Item>
-                      {getFieldDecorator(`value-${i}`, {
-                        initialValue: dt.value
-                      })(getItem(dt))}
-                    </Form.Item>
-                  </Col>
-                  <Col span={4}>
-                    <Icon type="minus-circle" onClick={() => {
-                      this.delete(i);
-                    }} />
-                  </Col>
-                </Row>
-              })
-            }
+            <ItemEditor data={data} getFieldDecorator={getFieldDecorator} type={type} />
             <Button onClick={this.add} block>添加</Button>
             <br /><br />
             <Button type="primary" htmlType="submit" block>提交</Button>
